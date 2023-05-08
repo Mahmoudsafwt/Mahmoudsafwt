@@ -63,6 +63,7 @@ flutter:
   assets:
     - assets/images/
     - assets/sur_files/
+    - assets/ahadeth_file/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

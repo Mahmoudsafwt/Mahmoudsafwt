@@ -6,21 +6,20 @@ class SebhaScreen extends StatefulWidget {
 }
 
 class _SebhaScreenState extends State<SebhaScreen> {
-  int counter=0;
+  int counter = 0;
+  int index = 0;
 
-  List<String>tsabeh=['سبحان الله','الحمد لله','الله اكبر'];
-int index=0;
+  List<String> tsabeh = ['سبحان الله', 'الحمد لله', 'الله اكبر','لا اله الا الله'];
+
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       child: Column(
-
-
-
         children: [
-
-          Image.asset('assets/images/head_sebha_logo.png',),
+          Image.asset(
+            'assets/images/head_sebha_logo.png',
+          ),
           Image.asset('assets/images/body_sebha_logo.png'),
           const Text(
             'عدد التسبيحات',
@@ -28,23 +27,20 @@ int index=0;
                 color: Colors.black, fontSize: 28, fontWeight: FontWeight.w400),
           ),
           InkWell(
-            onTap: (){
-              counter++;
-              if(counter==33)
-              {
+            onTap: () {
+              if (counter >= 33) {
+                counter = 0;
                 index++;
-                counter=0;
+              } else {
+                counter++;
               }
-              if(index>2)
-              {
-                index=0;
-              }else
+              if (index >=4) {
+                index = 0;
+                counter = 0;
+              }
 
-              setState(() {
-
-              });
-            }
-            ,
+              setState(() {});
+            },
             child: Container(
               alignment: Alignment.center,
               width: 70,
@@ -52,10 +48,15 @@ int index=0;
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(20),
-
               ),
-              child: Text(textAlign: TextAlign.center,'$counter',style: const TextStyle(
-                  color: Colors.black, fontSize: 40, fontWeight: FontWeight.w400),),
+              child: Text(
+                textAlign: TextAlign.center,
+                '$counter',
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w400),
+              ),
             ),
           ),
           const Spacer(),
@@ -66,12 +67,17 @@ int index=0;
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(20),
-
             ),
-            child: Text(textAlign: TextAlign.center,'${tsabeh[index]}',style: const TextStyle(
-                color: Colors.black, fontSize: 40, fontWeight: FontWeight.w400),),
+            child: Text(
+              textAlign: TextAlign.center,
+              '${tsabeh[index]}',
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 40,
+                  fontWeight: FontWeight.w400),
+            ),
           ),
-          const Spacer(flex:5 ),
+          const Spacer(flex: 5),
         ],
       ),
     );

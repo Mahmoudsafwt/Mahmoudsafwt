@@ -1,6 +1,7 @@
 
-
 import 'package:flutter/material.dart';
+import 'package:islami_app/ui/home/Hadeth/hadeth_detailes.dart';
+import 'package:islami_app/ui/home/Hadeth/hadeth_screen.dart';
 import 'package:islami_app/ui/home/Quran/quran_screen.dart';
 import 'package:islami_app/ui/home/home_screen.dart';
 import 'package:islami_app/ui/home/splash_screen/splash_screen.dart';
@@ -14,11 +15,14 @@ class QuranApplication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: SplashScreen.routeName,
       routes: {
         HomeScreen.routeName:(context) => HomeScreen(),
         QuranScreen.routeName:(context)=>QuranScreen(),
-        SuraDetilesScreen.routeName:(context)=>SuraDetilesScreen()
+        SuraDetilesScreen.routeName:(context)=>SuraDetilesScreen(),
+        HadethScreen.routName:(context)=>HadethScreen(),
+        HadethDetalies.routeName:(context)=>HadethDetalies()
       },
       home:SplashScreen() ,
       theme:ThemeData(
