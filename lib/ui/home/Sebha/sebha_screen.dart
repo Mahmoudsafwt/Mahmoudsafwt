@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/ui/home/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SebhaScreen extends StatefulWidget {
   @override
@@ -9,23 +12,69 @@ class _SebhaScreenState extends State<SebhaScreen> {
   int counter = 0;
   int index = 0;
 
-  List<String> tsabeh = ['سبحان الله', 'الحمد لله', 'الله اكبر','لا اله الا الله'];
+  List<String> tsabeh = [
+    'سبحان الله',
+    'الحمد لله',
+    'الله اكبر',
+    'لا اله الا الله'
+  ];
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingProvider>(context);
     return Container(
       alignment: Alignment.center,
       child: Column(
+
         children: [
-          Image.asset(
-            'assets/images/head_sebha_logo.png',
+          Container(
+            padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*.2,top:MediaQuery.of(context).size.height*.02 ),
+            alignment: Alignment.topCenter,
+            color: Colors.transparent,
+            height: MediaQuery.of(context).size.height*.4,
+            width: double.infinity,
+            child: Stack(
+              children: [
+                Positioned(left: MediaQuery.of(context).size.width*.25,
+                  top:MediaQuery.of(context).size.height*0.01 ,
+                  bottom:MediaQuery.of(context).size.height*.26 ,
+                  child: Image.asset(
+                    settingsProvider.logoOfSebha(),
+                  ),
+                ),
+                Positioned(
+                top:MediaQuery.of(context).size.height*.08,
+                right: MediaQuery.of(context).size.width*.2
+
+                ,child: Image.asset(settingsProvider.bodyOfSebha())),
+              ],
+            ),
           ),
-          Image.asset('assets/images/body_sebha_logo.png'),
-          const Text(
-            'عدد التسبيحات',
-            style: TextStyle(
-                color: Colors.black, fontSize: 28, fontWeight: FontWeight.w400),
+           SizedBox(
+             height: MediaQuery.of(context).size.height*0.02,
+           ),
+
+           Text(
+            AppLocalizations.of(context)!.numberOftasbeh,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),SizedBox(
+            height: MediaQuery.of(context).size.height*0.02,
           ),
+          Container(
+            alignment: Alignment.center,
+            width: 70,
+            height: 90,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              textAlign: TextAlign.center,
+              '$counter',
+              style:Theme.of(context).textTheme.headlineMedium,
+            ),
+          ),
+          const Spacer(),
           InkWell(
             onTap: () {
               if (counter >= 33) {
@@ -43,38 +92,17 @@ class _SebhaScreenState extends State<SebhaScreen> {
             },
             child: Container(
               alignment: Alignment.center,
-              width: 70,
-              height: 90,
+              width: 200,
+              height: 70,
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
                 textAlign: TextAlign.center,
-                '$counter',
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 40,
-                    fontWeight: FontWeight.w400),
+                '${tsabeh[index]}',
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-            ),
-          ),
-          const Spacer(),
-          Container(
-            alignment: Alignment.center,
-            width: 200,
-            height: 70,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              textAlign: TextAlign.center,
-              '${tsabeh[index]}',
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
-                  fontWeight: FontWeight.w400),
             ),
           ),
           const Spacer(flex: 5),

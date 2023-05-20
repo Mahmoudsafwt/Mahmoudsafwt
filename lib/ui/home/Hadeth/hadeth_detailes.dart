@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/ui/home/Hadeth/hadeth.dart';
+import 'package:islami_app/ui/home/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HadethDetalies extends StatelessWidget {
   static const String routeName = 'hadeth-detaiels';
 
   @override
   Widget build(BuildContext context) {
+    var settingProvider=Provider.of<SettingProvider>(context);
     Hadeth args = ModalRoute.of(context)?.settings.arguments as Hadeth;
+    var settingsProvider=Provider.of<SettingProvider>(context);
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/home_background.png'),
-              fit: BoxFit.fill)),
+              image: AssetImage(settingsProvider.mainBackGroundImage()), fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('اسلامي'),
+          title: Text(AppLocalizations.of(context)!.appTitle),
         ),
         body: Column(
           children: [
@@ -24,20 +29,16 @@ class HadethDetalies extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(' ${args.title}  ',
-                      style: TextStyle(
-                          fontSize: 26,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  Icon(
-                    Icons.play_circle,
-                    size: 30,
-                    color: Colors.black,
-                  )
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineLarge
+                          ?.copyWith(color:settingProvider.isDark()?  Theme.of(context).accentColor: Colors.black)),
+
                 ],
               ),
             ),
             Divider(
-              color: Theme.of(context).primaryColor,
+              color:settingProvider.isDark()? Theme.of(context).accentColor:Colors.black,
               thickness: 2,
               indent: 30,
               endIndent: 50,
@@ -51,7 +52,7 @@ class HadethDetalies extends StatelessWidget {
               child: SingleChildScrollView(
                   child: Text(
                 args.content,
-                style: const TextStyle(color: Colors.black, fontSize: 28),
+                style: Theme.of(context).textTheme.headlineSmall,
               )),
             ))
           ],

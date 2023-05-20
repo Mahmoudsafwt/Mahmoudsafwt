@@ -9,7 +9,7 @@ class SuraStyle extends StatelessWidget {
     return Center(
         child: Text(textAlign:TextAlign.center,
       content,
-      style: const TextStyle(color: Colors.black, fontSize: 28),
+      style:Theme.of(context).textTheme.headlineSmall,
     ));
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/ui/home/Quran/sura_name.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class QuranScreen extends StatelessWidget {
   static const String routeName = 'quran-screen';
@@ -121,21 +123,22 @@ class QuranScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Expanded(
             flex: 1,
             child: Image.asset('assets/images/qur2an_screen_logo.png')),
         Divider(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).accentColor,
           thickness: 2,
         ),
-        const Text(
-          'اسم السورة',
-          style: TextStyle(fontSize: 24, color: Colors.black),
+         Text(
+         AppLocalizations.of(context)!.verseName,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
         Divider(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).accentColor,
           thickness: 2,
         ),
         Expanded(
@@ -145,7 +148,7 @@ class QuranScreen extends StatelessWidget {
                     SuraNameWidget(suraName[index], index),
                 separatorBuilder: (context, index) {
                   return Divider(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                     thickness: 2,
                     indent: 34,
                     endIndent: 34,
