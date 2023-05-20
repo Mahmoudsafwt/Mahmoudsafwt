@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/ui/home/Hadeth/hadeth_header.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'hadeth.dart';
 
@@ -26,15 +27,15 @@ class _HadethScreenState extends State<HadethScreen> {
               'assets/images/59253-quran-basmala-islamic-kufic-arabic-calligraphy-icon.png'),
         ),
         Divider(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).accentColor,
           thickness: 2,
         ),
         Text(
-          'الاحاديث',
-          style: TextStyle(fontSize: 24, color: Colors.black),
+          AppLocalizations.of(context)!.alahadeth,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         Divider(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).accentColor,
           thickness: 2,
         ),
         Expanded(flex: 3,child: allHaeth.isEmpty?
@@ -42,7 +43,7 @@ class _HadethScreenState extends State<HadethScreen> {
         ListView.separated(itemBuilder: (context,index)=>HadethHeader(allHaeth[index].title,content: allHaeth[index].content), separatorBuilder:
             (context, index) {
           return Divider(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).accentColor,
             thickness: 2,
             indent: 34,
             endIndent: 34,

@@ -19,7 +19,7 @@ class HadethHeader extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         child: Text(title,
-            style: const TextStyle(fontSize: 24, color: Colors.black)),
+            style: Theme.of(context).textTheme.headlineMedium ),
       ),
     );
   }

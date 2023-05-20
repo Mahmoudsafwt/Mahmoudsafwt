@@ -3,6 +3,10 @@ import 'package:islami_app/ui/home/Hadeth/hadeth_screen.dart';
 import 'package:islami_app/ui/home/Quran/quran_screen.dart';
 import 'package:islami_app/ui/home/Radio/radio_screen.dart';
 import 'package:islami_app/ui/home/Sebha/sebha_screen.dart';
+import 'package:islami_app/ui/home/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'Settings/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
@@ -16,14 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider=Provider.of<SettingProvider>(context);
     return Container(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/home_background.png'),
+              image: AssetImage(settingsProvider.mainBackGroundImage()),
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('اسلامي'),
+          title:  Text(AppLocalizations.of(context)!.appTitle),
         ),
         bottomNavigationBar:
             BottomNavigationBar(onTap: (index){
@@ -35,30 +40,26 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
               icon: const ImageIcon(AssetImage('assets/images/icon_radio.png')),
-              label: 'Radio'),
+              label: AppLocalizations.of(context)!.radio),
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
               icon: const ImageIcon(AssetImage('assets/images/icon_sebha.png')),
-              label: 'Sebha'),
+              label: AppLocalizations.of(context)!.sebha),
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
               icon: const ImageIcon(AssetImage('assets/images/icon_hadeth.png')),
-              label: 'Hadeth'),
+              label: AppLocalizations.of(context)!.ahadeth),
           BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
               icon: const ImageIcon(AssetImage('assets/images/icon_quran.png')),
-              label: 'quran'),
+              label: AppLocalizations.of(context)!.quran),
+              BottomNavigationBarItem(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  icon: const Icon(Icons.settings),
+                  label: AppLocalizations.of(context)!.settings),
         ]),
          body:pages[indexOfSelectedIcon]
-        // Column(
-        //
-        //   children: [
-        //     Image.asset('assets/images/qur2an_screen_logo.png'),
-        //     Expanded(child: ListView.builder(itemBuilder: (context, index) =>pages[index] ,itemCount: pages.length,)
-        //
-        //     )
-        //   ],
-        // ),
+
       ),
     );
   }
@@ -68,5 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
     SebhaScreen(),
     HadethScreen(),
     QuranScreen(),
+    SettingsScreen()
   ];
 }

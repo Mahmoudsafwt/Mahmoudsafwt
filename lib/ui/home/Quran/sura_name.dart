@@ -15,7 +15,7 @@ class SuraNameWidget extends StatelessWidget {
     } ,
       child: Container(
         alignment: Alignment.center,
-        child: Text(title,style: const TextStyle(fontSize: 24,color: Colors.black)),
+        child: Text(title,style:Theme.of(context).textTheme.headlineMedium),
       ),
     );
   }
